@@ -2,10 +2,11 @@ require "./lib/district"
 
 class DistrictRepository
   attr_reader :districts, :enrollment_repository
-  def load_data(hash_o_files)
-    # load all the files
-    # make all the data
-    # etc etc
+  def load_data(data_files)
+    er = EnrollmentRepository.new
+    er.load_data(data_files)
+    @enrollment_repository = er
+    create_districts_from_repos!
   end
 
   def create_districts_from_repos!

@@ -1,4 +1,5 @@
-require "./lib/district"
+require_relative "district"
+require_relative "enrollment_repository"
 
 class DistrictRepository
   attr_reader :districts, :enrollment_repository
@@ -26,6 +27,12 @@ class DistrictRepository
   def load_repos(repos)
     @enrollment_repository = repos[:enrollment]
     create_districts_from_repos!
+  end
+
+  def find_all_matching(substring)
+    districts.select do |d|
+      d.name.include?(substring)
+    end
   end
 
   def find_by_name(dname)

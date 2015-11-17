@@ -36,6 +36,6 @@ class DistrictRepository
   end
 
   def find_by_name(dname)
-    districts.find { |d| d.name == dname }
+    districts.find { |d| d.name.upcase == dname.upcase }
   end
 end

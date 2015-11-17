@@ -23,7 +23,7 @@ class EnrollmentRepository
     grouped = CSV.open(filepath, headers: true).group_by { |row| row["Location"] }
     by_dist_name = grouped.map do |dist_name, rows|
       by_year = rows.reduce({}) do |by_year, row|
-        by_year[row["TimeFrame"]] = row["Data"]
+        by_year[row["TimeFrame"].to_i] = row["Data"].to_f
         by_year
       end
       [dist_name, by_year]
